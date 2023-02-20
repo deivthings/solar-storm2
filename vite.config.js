@@ -11,6 +11,7 @@ import Components from 'unplugin-vue-components/vite'
 import PurgeIcons from 'vite-plugin-purge-icons'
 
 import postcssNesting from 'postcss-nesting';
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
   plugins: [
     vue(),
     WindiCSS(),
+    VitePWA({ registerType: 'autoUpdate' }),
     PurgeIcons({
       /* PurgeIcons Options */
     }),
