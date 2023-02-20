@@ -1,18 +1,31 @@
 {
-  "name": "solar-storm2",
+  "name": "solar-storm",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@iconify/iconify": "^2.2.1",
+    "animate.css": "^4.1.1",
+    "howler": "^2.2.3",
+    "pinia": "^2.0.14",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "vite": "^4.1.0"
+    "@iconify/json": "^2.1.42",
+    "@rollup/plugin-alias": "^3.1.9",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "postcss-nesting": "^10.1.5",
+    "unplugin-icons": "^0.14.3",
+    "unplugin-vue-components": "^0.19.5",
+    "vite": "^2.9.7",
+    "vite-plugin-purge-icons": "^0.8.1",
+    "vite-plugin-windicss": "^1.8.4",
+    "windicss": "^3.5.1"
   }
 }
