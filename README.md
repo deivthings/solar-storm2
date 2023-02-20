@@ -1,7 +1,16 @@
-# Vue 3 + Vite
+# Damage Deck App for Solar Storm gameboard ( on progress ....)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+https://solar-storm.netlify.app/
 
-## Recommended IDE Setup
+![Solar Storm / Tormenta Solar](./solarstorm.webp "SolarStorm")
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+https://boardgamegeek.com/boardgame/274037/solar-storm
+
+# Features
+More variability on damage events. The app trigger the basic damage on rooms that the gameboard already have, but add a few more events that make the damage phase much more fun.
+
+Some of these new events:
+- 
+
+
+
