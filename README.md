@@ -1,6 +1,6 @@
 # Damage Deck App for Solar Storm gameboard ( on progress ....)
 
-https://solar-storm.netlify.app/
+https://solarstormapp.netlify.app
 
 ![Solar Storm / Tormenta Solar](./solarstorm.webp "SolarStorm")
 

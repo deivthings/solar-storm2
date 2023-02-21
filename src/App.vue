@@ -92,4 +92,13 @@ h1 {
 h2 {
   font-size: 1.2rem;
 }
+
+.wrapper-game {
+  min-height: 100vh;
+}
+
+h2,
+h1 {
+  font-family: 'Kdam Thmor Pro', sans-serif;
+}
 </style>

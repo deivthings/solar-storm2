@@ -7,8 +7,8 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 import { useRouter } from 'vue-router'
-import DialogExit from '@/components/DialogExit.vue'
 import { buildDamageEventsDeck } from '@/lib/BuildEventsDeck'
+import DialogExit from '@/components/DialogExit.vue'
 
 const appStore = useAppStore()
 const router = useRouter()
