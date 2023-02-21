@@ -14,7 +14,9 @@ export const useAppStore = defineStore({
     damageDeck: [],
 
     // repared and activated derive energy to cre
-    reparedRooms: []
+    reparedRooms: [],
+
+    selectedRoom: undefined
   }),
 
   getters: {

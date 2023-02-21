@@ -16,15 +16,7 @@
       </h1>
     </header>
 
-    <section>
-      <!-- <section v-if="exitDialog">
-        <DialogExit @cancel="exitDialog = false" @exit="exitCurrentGame()"/>
-      </section> -->
-
-      <!-- <section v-else-if="repairRoomEnergy">
-        <DialogRepairEnergy  @close="repairRoomEnergy = false" :roomNumber="activeRoom"/>
-      </section> -->
-  
+    <section>  
       <article>
         <section class="text-center mb-8" v-if="appStore.round < 0">
           <button class="btn-action-green" @click="triggerInitialDamage()" :disabled="loadingEvent">
@@ -66,8 +58,6 @@ import { useRouter } from 'vue-router'
 import { buildDamageEventsDeck } from '@/lib/BuildEventsDeck'
 import BasicDamageEvent from '@/components/BasicDamageEvent.vue'
 import FinalHullBreach from '@/components/FinalHullBreach.vue'
-import DialogExit from '@/components/DialogExit.vue'
-import DialogRepairEnergy from '@/components/DialogRepairEnergy.vue'
 import { Howl } from 'howler';
 
 //// DATA ////////////////////////
@@ -75,9 +65,6 @@ const appStore = useAppStore()
 const router = useRouter()
 const currentDamageEvent = ref(null)
 const loadingEvent = ref(false)
-const exitDialog = ref(false)
-const repairRoomEnergy = ref(false)
-const activeRoom = ref(0)
 const LOADING_EVENT_DELAY = 2000
 const soundClick = new Howl({ src: ['src/assets/sounds/ui-btn-click.mp3'] })
 const soundErr2 = new Howl({ src: ['src/assets/sounds/error2.mp3'] })
@@ -114,17 +101,9 @@ const triggerDamageCard = () => {
   }, LOADING_EVENT_DELAY)
 }
 
-function exitCurrentGame () {
-  appStore.resetGame()
-  this.currentDamageEvent = null
-  this.exitDialog = false
-  buildDamageEventsDeck()
-  router.push('/')
-}
-
 function onClickRoom (roomNumber) {
-  repairRoomEnergy.value = true
-  activeRoom.value = roomNumber
+  appStore.selectedRoom = roomNumber
+  router.push('/room')
 }
 
 //// LIFECYCLE HOOKS ////////////////////////
