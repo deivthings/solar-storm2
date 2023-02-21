@@ -8,7 +8,7 @@
       <Cube @click="onClickCube(1)" :class="[{'is-active': cubes[1]}]"/>
       <Cube @click="onClickCube(2)" :class="[{'is-active': cubes[2]}]"/>
     </section>
-    <button class="block hover:bg-[rgba(0,0,0,0.5)] p-5 rounded-3xl my-0 mx-auto" @click="$emit('close')">CLOSE</button>
+    <button class="block hover:bg-[rgba(0,0,0,0.5)] p-5 rounded-3xl my-0 mx-auto" @click="$emit('close')">DONE</button>
   </section>
 </template>
 

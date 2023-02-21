@@ -46,6 +46,7 @@ const appStore = useAppStore()
  */
 let { damage } = toRefs(props)
 watchPostEffect(() => {
+  console.log('watch post effect')
   resetRooms()
   addDamageToRooms()
 })
