@@ -15,14 +15,7 @@ const router = useRouter()
 
 function exitCurrentGame() {
   appStore.resetGame()
-  // this.currentDamageEvent = null
   buildDamageEventsDeck()
-  console.log('ahout exit')
   router.push('/')
 }
-
 </script>
-
-<style scoped>
-
-</style>

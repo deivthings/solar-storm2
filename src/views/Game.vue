@@ -8,13 +8,15 @@
           <bx-Icon icon="mdi:close-octagon-outline" class="text-light-50" size="xl" />
           <h6 class="text-xs" style="margin-top: -.5rem">exit</h6>
         </div>
-        <!-- <h1>SOLAR STORM DAMAGE APP</h1> -->
       </div>
       <h1 v-if="appStore.round >= 0">
         <span class="mr-3">ROUND</span>
         <span class="badge">{{ appStore.round }}</span>
       </h1>
     </header>
+
+        
+
 
     <section>  
       <article>
@@ -33,21 +35,22 @@
         </section>
   
         <section>
-          <div v-if="loadingEvent">
-            <scanning-ship></scanning-ship>
-          </div>
-          <div v-else>
-            <div v-if="currentDamageEvent && appStore.round >= 0">
-              <BasicDamageEvent :damage="currentDamageEvent" @clickroom="onClickRoom" />
+          <Transition mode="out-in">
+            <div v-if="loadingEvent">
+              <ScanningShip />
             </div>
-            <div v-if="appStore.round > appStore.finalRound">
-              <FinalHullBreach />
+            <div v-else>
+              <div v-if="currentDamageEvent && appStore.round >= 0">
+                <BasicDamageEvent :damage="currentDamageEvent" @clickroom="onClickRoom" />
+              </div>
+              <div v-if="appStore.round > appStore.finalRound">
+                <FinalHullBreach />
+              </div>
             </div>
-          </div>
+          </Transition>
         </section>
       </article>
     </section>
-
   </main>
 </template>
 
@@ -58,6 +61,7 @@ import { useRouter } from 'vue-router'
 import { buildDamageEventsDeck } from '@/lib/BuildEventsDeck'
 import BasicDamageEvent from '@/components/BasicDamageEvent.vue'
 import FinalHullBreach from '@/components/FinalHullBreach.vue'
+import ScanningShip from '@/components/ScanningShip.vue'
 import { Howl } from 'howler';
 
 //// DATA ////////////////////////
