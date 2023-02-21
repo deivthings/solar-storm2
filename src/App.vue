@@ -2,7 +2,7 @@
   <section name="app-wrapper" style="min-height: 100vh;">
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <router-view v-slot="{ Component }">
-      <transition>
+      <transition mode="out-in">
         <keep-alive>
           <component :is="Component" />
         </keep-alive>
@@ -37,7 +37,7 @@ html,body {
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease-out;
 }
 
 .v-enter-from,

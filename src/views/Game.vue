@@ -4,7 +4,7 @@
     <header class="game-header mb-8 red">
       <div class="flex items-center">
         <div class="text-center bg-error mr-3 rounded-lg p-1 cursor-pointer select-none hover:bg-errordark"
-          @click="exitDialog = true">
+          @click="$router.push('/exit')">
           <bx-Icon icon="mdi:close-octagon-outline" class="text-light-50" size="xl" />
           <h6 class="text-xs" style="margin-top: -.5rem">exit</h6>
         </div>
@@ -16,16 +16,16 @@
       </h1>
     </header>
 
-    <section v-auto-animate>
-      <section v-if="exitDialog">
+    <section>
+      <!-- <section v-if="exitDialog">
         <DialogExit @cancel="exitDialog = false" @exit="exitCurrentGame()"/>
-      </section>
+      </section> -->
 
-      <section v-else-if="repairRoomEnergy">
+      <!-- <section v-else-if="repairRoomEnergy">
         <DialogRepairEnergy  @close="repairRoomEnergy = false" :roomNumber="activeRoom"/>
-      </section>
+      </section> -->
   
-      <article v-else v-auto-animate>
+      <article>
         <section class="text-center mb-8" v-if="appStore.round < 0">
           <button class="btn-action-green" @click="triggerInitialDamage()" :disabled="loadingEvent">
             <bx-Icon icon="ant-design:rocket-outlined" size="xxl" />
@@ -40,7 +40,7 @@
           </button>
         </section>
   
-        <section v-auto-animate>
+        <section>
           <div v-if="loadingEvent">
             <scanning-ship></scanning-ship>
           </div>

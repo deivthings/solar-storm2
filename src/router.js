@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Game from '@/views/Game.vue'
+import ExitGame from '@/views/ExitGame.vue'
 
 
 export const router = createRouter({
@@ -18,6 +19,13 @@ export const router = createRouter({
       path: '/game',
       name: 'game',
       component: Game,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/exit',
+      name: 'gamexit',
+      component: ExitGame,
       meta: { requiresAuth: true },
     },
 
