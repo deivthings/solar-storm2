@@ -45,7 +45,7 @@
             <scanning-ship></scanning-ship>
           </div>
           <div v-else>
-            <div v-if="currentDamageEvent">
+            <div v-if="currentDamageEvent && appStore.round >= 0">
               <BasicDamageEvent :damage="currentDamageEvent" @clickroom="onClickRoom" />
             </div>
             <div v-if="appStore.round > appStore.finalRound">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex h-screen items-center">
     <DialogExit @cancel="$router.push('/game')" @exit="exitCurrentGame()"/>
   </div>
 </template>
@@ -8,15 +8,15 @@
 import { useAppStore } from '@/stores/app'
 import { useRouter } from 'vue-router'
 import DialogExit from '@/components/DialogExit.vue'
+import { buildDamageEventsDeck } from '@/lib/BuildEventsDeck'
 
 const appStore = useAppStore()
 const router = useRouter()
 
 function exitCurrentGame() {
-  // appStore.resetGame()
+  appStore.resetGame()
   // this.currentDamageEvent = null
-  // this.exitDialog = false
-  // buildDamageEventsDeck()
+  buildDamageEventsDeck()
   console.log('ahout exit')
   router.push('/')
 }
