@@ -5,7 +5,10 @@
     <section class="card-event">
       <ul class="matrix-rooms">
         <li @click="$emit('clickroom', index + 1)"
-          :class="['room', `room${index + 1}`, {'has-damage animate__animated animate__pulse animate__infinite': room === 1}]" 
+          :class="['room', `room${index + 1}`, 
+            {'has-damage animate__animated animate__pulse animate__infinite': room === 1},
+            {'is-repared': appStore.reparedRooms.includes(index + 1)}
+          ]" 
           v-for="(room, index) in rooms" :key="index">
             <h6 class="room-label">room {{ index + 1 }}</h6>
             <!-- room value::::: {{ room }} -->
@@ -111,10 +114,16 @@ const addDamageToRooms = () => {
   border: 2px solid var(--color-primary);
 }
 
+.room.is-repared {
+  color: var(--color-core);
+  border: 2px solid var(--color-core);
+}
+
 .energy-path {
   position: absolute;
   display: flex;
   align-items: center;
+  color: var(--color-core)
 }
 
 .energy-path svg {
@@ -182,6 +191,7 @@ const addDamageToRooms = () => {
 
 .room.has-damage {
   border: 2px solid var(--color-error);
+  color: white
 }
 
 .room-label {
