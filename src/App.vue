@@ -48,7 +48,7 @@ html,body {
 body {
   background-color: #27272A;
   background-color: black;
-  background: black url("./assets/back-stars-4.jpg") no-repeat center center fixed;
+  /*background: black url("./assets/back-stars-4.jpg") no-repeat center center fixed;*/
   background-size: cover;
 
   min-height: 100vh;
@@ -75,6 +75,16 @@ body {
   font-family: 'Kdam Thmor Pro', sans-serif;
   font-weight: bold;
   cursor: pointer;
+}
+
+.card-event {
+  margin: 0 auto;
+  border: 2px solid var(--color-primary);
+  border-radius: 20px;
+  padding: 3rem;
+  width: clamp(300px, 60%, 500px);
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 10px 1px var(--color-primary);
 }
 
 .btn-action-green {

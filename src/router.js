@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/Home.vue'
+import GameSetup from '@/views/GameSetup.vue'
 import Game from '@/views/Game.vue'
 import ExitGame from '@/views/ExitGame.vue'
 import RepairRoomEnergy from '@/views/RepairRoomEnergy.vue'
@@ -13,6 +14,13 @@ export const router = createRouter({
       path: '/',
       name: 'home',
       component: Home,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/gamesetup',
+      name: 'gamesetup',
+      component: GameSetup,
       meta: { requiresAuth: true },
     },
 

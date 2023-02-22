@@ -23,7 +23,8 @@
         <li class="room room-core">
             <h6 class="room-label text-center">Energy Core</h6>
             <!-- simple-icons: coronaengine -->
-          <bx-Icon size="xl" icon="mdi:energy-circle" class="energy-core-icon text-fuchsia-500" />
+          <bx-Icon size="xl" icon="mdi:energy-circle" 
+            :class="['energy-core-icon', 'text-fuchsia-500', appStore.energyClass]" />
         </li>
       </ul>
     </section>
@@ -31,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, toRefs, watchPostEffect } from "@vue/runtime-core"
+import { ref, toRefs, watchPostEffect, computed } from "@vue/runtime-core"
 import { useAppStore } from '@/stores/app'
 
 const props = defineProps({ damage: Object })
@@ -49,14 +50,11 @@ const appStore = useAppStore()
  */
 let { damage } = toRefs(props)
 watchPostEffect(() => {
-  console.log('watch post effect')
   resetRooms()
   addDamageToRooms()
 })
 
-const isCornerRoom = (roomNumber) => {
-  return [1, 3, 8, 6].includes(roomNumber)
-}
+const isCornerRoom = (roomNumber) => [1, 3, 8, 6].includes(roomNumber)
 
 /**
  * Initiliaze rooms
@@ -247,6 +245,7 @@ const addDamageToRooms = () => {
   animation-name: rotation;
   animation-iteration-count: infinite;
   animation-direction: linear;
+  animation-fill-mode: both;
 }
 .energy-core-icon.energy1 { animation-duration: 8s }
 .energy-core-icon.energy2 { animation-duration: 7s }

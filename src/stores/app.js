@@ -16,12 +16,25 @@ export const useAppStore = defineStore({
     // repared and activated derive energy to cre
     reparedRooms: [],
 
-    selectedRoom: undefined
+    selectedRoom: undefined,
+
+    // room = {id, name, repaired?}
+    rooms: [
+      { id: 1, name: 'CREW QUARTERS', reparired: false },
+      { id: 2, name: 'ENGINE ROOM', reparired: false },
+      { id: 3, name: 'ARMOURY', reparired: false },
+      { id: 4, name: 'MEDICAL BAY', reparired: false },
+      { id: 5, name: 'CARGO HOLD', reparired: false },
+      { id: 6, name: 'REPAIR CENTRE', reparired: false },
+      { id: 7, name: 'MESS HALL', reparired: false },
+      { id: 8, name: 'BRIDGE', reparired: false }
+    ]
   }),
 
   getters: {
     getRoundDamageCard: (state) => state.damageDeck[state.round - 1],
-    doubleCount: (state) => state.counter * 2
+    doubleCount: (state) => state.counter * 2,
+    energyClass: (state) => `energy${state.reparedRooms.length}` // dont refresh
   },
   
   actions: {
