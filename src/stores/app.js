@@ -67,6 +67,18 @@ export const useAppStore = defineStore({
 
     shuffleRoomsOrder () {
       this.rooms = this.rooms.sort((a, b) => 0.5 - Math.random())
+    },
+
+    resetDamageRooms () {
+      this.rooms.forEach(room => room.damagedInTurn = false)
+    },
+
+    roomIsDamaged (index) {
+      return this.rooms[index].damagedInTurn
+    },
+
+    addDamageToRoom (index) {
+      this.rooms[index].damagedInTurn = true
     }
   }
 })

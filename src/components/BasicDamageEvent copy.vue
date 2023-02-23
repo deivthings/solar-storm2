@@ -9,12 +9,11 @@
             {'has-damage animate__animated animate__pulse animate__infinite': room === 1},
             {'is-repared': appStore.reparedRooms.includes(index + 1)}
           ]" 
-          v-for="(room, index) in appStore.rooms" :key="index">
-            <h6 class="room-label">{{ room.name }}</h6>
-            <!-- <h6 class="room-label">room {{ index + 1 }}</h6> -->
+          v-for="(room, index) in rooms" :key="index">
+            <h6 class="room-label">room {{ index + 1 }}</h6>
             <!-- room value::::: {{ room }} -->
             <!-- <bx-Icon v-if="room === 1" icon="bi:x-circle-fill" class="text-rose-500" size="xl"/> -->
-            <bx-Icon v-if="room.damagedInTurn" icon="bx:error" class="text-rose-500" size="xxl"/>
+            <bx-Icon v-if="room === 1" icon="bx:error" class="text-rose-500" size="xxl"/>
             <div :class="['energy-path']" v-if="appStore.reparedRooms.includes(index + 1)">
               <bx-Icon icon="ic:round-double-arrow" size="lg"></bx-Icon>
               <bx-Icon icon="ic:round-double-arrow" size="md"></bx-Icon>
@@ -51,7 +50,7 @@ const appStore = useAppStore()
  */
 let { damage } = toRefs(props)
 watchPostEffect(() => {
-  appStore.resetDamageRooms()
+  resetRooms()
   addDamageToRooms()
 })
 
@@ -60,7 +59,7 @@ const isCornerRoom = (roomNumber) => [1, 3, 8, 6].includes(roomNumber)
 /**
  * Initiliaze rooms
  */
-// const resetRooms = () => rooms.value = [0,0,0,0,0,0,0,0]
+const resetRooms = () => rooms.value = [0,0,0,0,0,0,0,0]
 
 /**
  * Turn 0 to 1 on random rooms array
@@ -73,12 +72,11 @@ const addDamageToRooms = () => {
   while(damagedRooms.length < props.damage.value) {
      rndRoom = Math.floor(Math.random() * (8 - 0)) + 0
      
-    if(!appStore.roomIsDamaged(rndRoom)) { 
+    if(rooms.value[rndRoom] !== 1) { 
       damagedRooms.push(rndRoom)
-      appStore.addDamageToRoom(rndRoom)
+      rooms.value[rndRoom] = 1
     }
   }
-  console.log({ damagedRooms })
 }
 
 

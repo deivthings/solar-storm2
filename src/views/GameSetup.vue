@@ -28,7 +28,6 @@
           LET'S START
         </button>
 
-
         <!-- <section class="mb-7">
           Dificulty
         </section>
