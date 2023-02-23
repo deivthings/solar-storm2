@@ -18,16 +18,19 @@ export const useAppStore = defineStore({
 
     selectedRoom: undefined,
 
+    // easy, moderate, hard, insane?
+    difficulty: { id: 2, name: 'moderate' },
+
     // room = {id, name, repaired?}
     rooms: [
-      { id: 1, name: 'CREW QUARTERS', reparired: false },
-      { id: 2, name: 'ENGINE ROOM', reparired: false },
-      { id: 3, name: 'ARMOURY', reparired: false },
-      { id: 4, name: 'MEDICAL BAY', reparired: false },
-      { id: 5, name: 'CARGO HOLD', reparired: false },
-      { id: 6, name: 'REPAIR CENTRE', reparired: false },
-      { id: 7, name: 'MESS HALL', reparired: false },
-      { id: 8, name: 'BRIDGE', reparired: false }
+      { id: 1, name: 'CREW QUARTERS', damagedInTurn: false, fixed: false },
+      { id: 2, name: 'ENGINE ROOM', damagedInTurn: false, fixed: false },
+      { id: 3, name: 'ARMOURY', damagedInTurn: false, fixed: false },
+      { id: 4, name: 'MEDICAL BAY', damagedInTurn: false, fixed: false },
+      { id: 5, name: 'CARGO HOLD', damagedInTurn: false, fixed: false },
+      { id: 6, name: 'REPAIR CENTRE', damagedInTurn: false, fixed: false },
+      { id: 7, name: 'MESS HALL', damagedInTurn: false, fixed: false },
+      { id: 8, name: 'BRIDGE', damagedInTurn: false, fixed: false }
     ]
   }),
 
@@ -60,6 +63,10 @@ export const useAppStore = defineStore({
       this.damageDeck = []
       this.finalRound = undefined
       this.round = -1
+    },
+
+    shuffleRoomsOrder () {
+      this.rooms = this.rooms.sort((a, b) => 0.5 - Math.random())
     }
   }
 })
