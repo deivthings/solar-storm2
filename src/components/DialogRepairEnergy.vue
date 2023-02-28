@@ -2,29 +2,43 @@
   <section class="card-event">
     <bx-Icon icon="eos-icons:patch-fixes" size="xxl"></bx-Icon>
     <h1 class="gametitle mb-1 text-2xl text-blue-500">{{ selectedRoom.name }}</h1>
-    <h1 class="gametitle mb-8 text-sm">ACTIVATE REPAIR CUBESs FOR DIVERT POWER TO ENERGY CORE</h1>
-    <section class="cubess flex justify-evenly cursor-pointer mb-4">
-      <Cube @click="onClickCube(0)" :class="[{'is-active': cubes[0]}]"/>
-      <Cube @click="onClickCube(1)" :class="[{'is-active': cubes[1]}]"/>
-      <Cube @click="onClickCube(2)" :class="[{'is-active': cubes[2]}]"/>
-    </section>
-    <button class="block hover:bg-[rgba(0,0,0,0.5)] p-5 rounded-3xl my-0 mx-auto" @click="$emit('close')">DONE</button>
+    <h1 v-if="selectedRoom.fixed" >Room is repaired</h1>
+    <h1 v-else class="gametitle mb-8 text-sm">ACTIVATE ALL REPAIR CUBES IN ORDER TO DIVERT POWER TO ENERGY CORE</h1>
+      <section class="cubess flex justify-evenly cursor-pointer mb-4">
+        <Cube @click="onClickCube(0)" :class="[{ 'is-active': cubes[0] }]"/>
+        <Cube @click="onClickCube(1)" :class="[{ 'is-active': cubes[1] }]"/>
+        <Cube @click="onClickCube(2)" :class="[{ 'is-active': cubes[2] }]"/>
+      </section>
+    <button class="block p-5 rounded-3xl my-0 mx-auto | hover:bg-[rgba(0,0,0,0.5)]" @click="$emit('close')">
+      DONE
+    </button>
   </section>
 </template>
 
 <script setup>
 import Cube from '@/components/Cube.vue'
 import { useAppStore } from '@/stores/app'
-import { ref, toRefs } from 'vue';
+import { ref, watch } from 'vue';
 
 
 //// PROPS /////
 const props = defineProps({ selectedRoom: Object })
-// let { selectedRoom } = toRefs(props)
 
 
 //// COMPONSABLES /////
 const appStore = useAppStore()
+
+
+watch(() => props.selectedRoom.id,
+  (newValue, oldValue) => {
+    console.log({cubes})
+    cubes.value = [0,0,0]
+  },
+  { 
+    deep: true,
+    // immediate: true 
+  }
+)
 
 
 //// DATA /////

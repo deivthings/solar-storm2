@@ -39,7 +39,7 @@ export const useAppStore = defineStore({
     doubleCount: (state) => state.counter * 2,
     roomIsDamaged: (state) => (index) => state.rooms[index].damagedInTurn,
     roomIsRepaired: (state) => (roomId) => state.rooms.find(room => room.id === roomId).fixed,
-    unrepairedRooms: (state) => state.rooms.filter(room => !room.fixed)
+    // unrepairedRooms: (state) => state.rooms.filter(room => !room.fixed)
     // energyClass: (state) => `energy${state.reparedRooms.length}`, // dont refresh
   },
   

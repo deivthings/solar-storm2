@@ -5,7 +5,7 @@
     <section class="card-event">
       <ul class="matrix-rooms">
         <li @click="$emit('clickroom', room)"
-          :class="['room', `room${index + 1}`,
+          :class="['room', 'cursor-pointer', `room${index + 1}`,
             {'has-damage animate__animated animate__pulse animate__infinite': room.damagedInTurn },
             {'is-repared': appStore.roomIsRepaired(room.id)}
           ]" 
