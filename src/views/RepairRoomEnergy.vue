@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen items-center">
-    <DialogRepairEnergy  @close="$router.push('/game')" :roomNumber="appStore.selectedRoom"/>
+    <DialogRepairEnergy  @close="$router.push('/game')" :selectedRoom="appStore.selectedRoom"/>
   </div>
 </template>
 

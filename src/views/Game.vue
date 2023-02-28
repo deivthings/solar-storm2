@@ -88,8 +88,12 @@ const triggerDamageCard = () => {
   }, LOADING_EVENT_DELAY)
 }
 
-function onClickRoom (roomNumber) {
-  appStore.selectedRoom = roomNumber
+/**
+ * 
+ * @param {Object} { id: 1, name: 'CREW QUARTERS', damagedInTurn: false, fixed: false } 
+ */
+function onClickRoom (room) {
+  appStore.selectedRoom = room
   router.push('/room')
 }
 

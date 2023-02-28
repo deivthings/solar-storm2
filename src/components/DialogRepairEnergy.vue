@@ -1,7 +1,7 @@
 <template>
   <section class="card-event">
     <bx-Icon icon="eos-icons:patch-fixes" size="xxl"></bx-Icon>
-    <h1 class="gametitle mb-1 text-2xl text-blue-500">ROOM {{ roomNumber }}</h1>
+    <h1 class="gametitle mb-1 text-2xl text-blue-500">{{ selectedRoom.name }}</h1>
     <h1 class="gametitle mb-8 text-sm">ACTIVATE REPAIR CUBESs FOR DIVERT POWER TO ENERGY CORE</h1>
     <section class="cubess flex justify-evenly cursor-pointer mb-4">
       <Cube @click="onClickCube(0)" :class="[{'is-active': cubes[0]}]"/>
@@ -17,15 +17,19 @@ import Cube from '@/components/Cube.vue'
 import { useAppStore } from '@/stores/app'
 import { ref, toRefs } from 'vue';
 
+
 //// PROPS /////
-const props = defineProps({ roomNumber: String })
-let { roomNumber } = toRefs(props)
+const props = defineProps({ selectedRoom: Object })
+// let { selectedRoom } = toRefs(props)
+
 
 //// COMPONSABLES /////
 const appStore = useAppStore()
 
+
 //// DATA /////
 const cubes = ref([0,0,0])
+
 
 //// METHODS /////
 function onClickCube(n) {
@@ -34,11 +38,9 @@ function onClickCube(n) {
     : cubes.value[n] = 1
   
   if (cubes.value.every(c => c === 1)) {
-    appStore.reparedRooms.push(roomNumber.value)
+    appStore.repairRoom(props.selectedRoom.id)
   } else {
-    if (appStore.reparedRooms.includes(roomNumber.value)) {
-      appStore.reparedRooms.splice(appStore.reparedRooms.findIndex(r => r === roomNumber.value), 1)
-    }
+    appStore.crashRoom(props.selectedRoom.id)
   }
 }
 

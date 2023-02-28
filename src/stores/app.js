@@ -37,7 +37,10 @@ export const useAppStore = defineStore({
   getters: {
     getRoundDamageCard: (state) => state.damageDeck[state.round - 1],
     doubleCount: (state) => state.counter * 2,
-    energyClass: (state) => `energy${state.reparedRooms.length}` // dont refresh
+    roomIsDamaged: (state) => (index) => state.rooms[index].damagedInTurn,
+    roomIsRepaired: (state) => (roomId) => state.rooms.find(room => room.id === roomId).fixed,
+    unrepairedRooms: (state) => state.rooms.filter(room => !room.fixed)
+    // energyClass: (state) => `energy${state.reparedRooms.length}`, // dont refresh
   },
   
   actions: {
@@ -73,12 +76,25 @@ export const useAppStore = defineStore({
       this.rooms.forEach(room => room.damagedInTurn = false)
     },
 
-    roomIsDamaged (index) {
-      return this.rooms[index].damagedInTurn
-    },
-
     addDamageToRoom (index) {
       this.rooms[index].damagedInTurn = true
-    }
+    },
+
+    repairRoom (roomId) {
+      this.rooms.find(room => room.id === roomId).fixed = true
+    },
+
+    crashRoom (roomId) {
+      this.rooms.find(room => room.id === roomId).fixed = false
+    },
+
+    /* addDamageToRandomRooms(numDamage) {
+      // only add damage if room is not already fixed
+      let damagedRooms = []
+
+      while (damagedRooms.length < numDamage) {
+
+      }
+    } */
   }
 })

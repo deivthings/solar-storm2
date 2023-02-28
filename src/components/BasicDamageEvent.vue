@@ -4,25 +4,23 @@
     <h2>{{  }}</h2>
     <section class="card-event">
       <ul class="matrix-rooms">
-        <li @click="$emit('clickroom', index + 1)"
-          :class="['room', `room${index + 1}`, 
-            {'has-damage animate__animated animate__pulse animate__infinite': room === 1},
-            {'is-repared': appStore.reparedRooms.includes(index + 1)}
+        <li @click="$emit('clickroom', room)"
+          :class="['room', `room${index + 1}`,
+            {'has-damage animate__animated animate__pulse animate__infinite': room.damagedInTurn },
+            {'is-repared': appStore.roomIsRepaired(room.id)}
           ]" 
           v-for="(room, index) in appStore.rooms" :key="index">
             <h6 class="room-label">{{ room.name }}</h6>
-            <!-- <h6 class="room-label">room {{ index + 1 }}</h6> -->
-            <!-- room value::::: {{ room }} -->
-            <!-- <bx-Icon v-if="room === 1" icon="bi:x-circle-fill" class="text-rose-500" size="xl"/> -->
-            <bx-Icon v-if="room.damagedInTurn" icon="bx:error" class="text-rose-500" size="xxl"/>
-            <div :class="['energy-path']" v-if="appStore.reparedRooms.includes(index + 1)">
+            <bx-Icon v-if="room.damagedInTurn" icon="bx:error" class="text-rose-500" size="xl"/>
+            <bx-Icon v-else-if="room.fixed" icon="mdi:energy-circle" size="xl"/>
+            <div :class="['energy-path']" v-if="appStore.roomIsRepaired(room.id)">
               <bx-Icon icon="ic:round-double-arrow" size="lg"></bx-Icon>
               <bx-Icon icon="ic:round-double-arrow" size="md"></bx-Icon>
               <bx-Icon v-if="isCornerRoom(index + 1)" icon="ic:round-double-arrow" size="sm"></bx-Icon>
             </div>
         </li>
         <li class="room room-core">
-            <h6 class="room-label text-center">Energy Core</h6>
+            <h6 class="room-label text-center">ENERGY CORE</h6>
             <!-- simple-icons: coronaengine -->
           <bx-Icon size="xl" icon="mdi:energy-circle" 
             :class="['energy-core-icon', 'text-fuchsia-500', appStore.energyClass]" />
@@ -37,7 +35,7 @@ import { ref, toRefs, watchPostEffect, computed } from "@vue/runtime-core"
 import { useAppStore } from '@/stores/app'
 
 const props = defineProps({ damage: Object })
-const rooms = ref([0,0,0,0,0,0,0,0])
+// const rooms = ref([0,0,0,0,0,0,0,0])
 const appStore = useAppStore()
 
 /**
@@ -58,11 +56,6 @@ watchPostEffect(() => {
 const isCornerRoom = (roomNumber) => [1, 3, 8, 6].includes(roomNumber)
 
 /**
- * Initiliaze rooms
- */
-// const resetRooms = () => rooms.value = [0,0,0,0,0,0,0,0]
-
-/**
  * Turn 0 to 1 on random rooms array
  * The number of rooms damaged comes from value of damage object => level2: { level: 2, name: 'Damage on two locations', type: 'damage-location', value: 2
  */
@@ -78,10 +71,7 @@ const addDamageToRooms = () => {
       appStore.addDamageToRoom(rndRoom)
     }
   }
-  console.log({ damagedRooms })
 }
-
-
 </script>
 
 <style scoped>
@@ -123,7 +113,8 @@ const addDamageToRooms = () => {
   position: absolute;
   display: flex;
   align-items: center;
-  color: var(--color-core)
+  color: var(--color-core);
+  will-change: transform;
 }
 
 .energy-path svg {
@@ -196,10 +187,15 @@ const addDamageToRooms = () => {
 
 .room-label {
   position: absolute;
-  font-size: .8rem;
+  /* font-size: .8rem; */
   font-family: var(--font-primary);
   top: 5px;
   left: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(.5rem, 2vw, .85rem);
+  line-height: 1.1;
+  text-align: center;
 }
 
 .room1 { grid-area: 1 / 1 / 2 / 2; }
