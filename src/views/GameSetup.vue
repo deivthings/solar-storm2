@@ -24,7 +24,7 @@
           </ul>
         </section>
 
-        <button @click="$router.push('/game')" class="btn-action-green mb-4 my-0 mx-auto block">
+        <button v-wave @click="$router.push('/game')" class="btn-action-green mb-4 my-0 mx-auto block">
           LET'S START
         </button>
 

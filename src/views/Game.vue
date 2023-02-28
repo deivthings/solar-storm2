@@ -4,14 +4,14 @@
 
     <article>  
       <section class="text-center mb-8" v-if="appStore.round < 0">
-        <button class="btn-action-green" @click="triggerInitialDamage()" :disabled="loadingEvent">
+        <button v-wave class="btn-action-green" @click="triggerInitialDamage()" :disabled="loadingEvent">
           <bx-Icon icon="ant-design:rocket-outlined" size="xxl" />
           <div> Rooms Initial Damage </div>
         </button>
       </section>
 
       <section class="text-center mb-8" v-if="appStore.round >= 0 && currentDamageEvent">
-        <button class="btn-action" @click="triggerDamageCard()" :disabled="loadingEvent">
+        <button v-wave class="btn-action" @click="triggerDamageCard()" :disabled="loadingEvent">
           <bx-Icon icon="ant-design:security-scan-filled" size="xxl" />
           <div> Trigger Next Damage Round </div>
         </button>
